@@ -9,8 +9,8 @@ include 'koneksi.php';
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Bootstrap demo</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.dataTables.css" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </head>
 
@@ -30,8 +30,16 @@ include 'koneksi.php';
             </div>
             <div class="row mt-3">
                 <div class="col-md">
+                <!-- pencarian
+                    <form action="bukubs.php" method="get" class="mb-3">
+                        <label>Cari :</label>
+                        <input type="text" name="cari">
+                        <input type="submit" value="Cari">
+                    </form> -->
+                <?php if ($level == 'admin' || $level == 'karyawan') { ?>
                     <a href="tambahBarang.php" class="btn btn-primary">Tambah Data</a>
-                    <a href="admin.php" class="btn btn-primary">Kembali</a>
+                <?php }?>
+                     <a href="admin.php" class="btn btn-primary">Kembali</a>
                 </div>
             </div>
 
@@ -63,17 +71,19 @@ include 'koneksi.php';
                                     <td><?php echo $barang['jumlah']; ?></td>
                                     <td><?php echo $barang['Tahun_masuk']; ?></td>
                                     <td><?php echo $barang['Status']; ?></td>
-                                    <td>
                                     <?php if ($level == 'admin' || $level == 'karyawan'){?>
-                                        <a href="hapusbarang.php?id=<?php echo $barang['id_barang']; ?>" class="btn btn-danger">Hapus</a>
+                                    <td>
+                                    <?php if ($level == 'admin' ){?>
+                                        <a href="hapusbarang.php?id=<?php echo $barang['id_barang']; ?>" class="btn btn-danger alert_notif">Hapus</a>
                                     <?php }?>
                                     
 
                                        
-                                    <?php if ($level == 'admin'){?>
+                                    <?php if ($level == 'admin'|| $level == 'karyawan'){?>
                                         <a href="editbarng.php?id=<?php echo $barang['id_barang']; ?>" class="btn btn-warning">edit</a>
                                        <?php }?>
                                     </td>
+                                    <?php }?>
                                 </tr>
                             <?php } ?>
                         </tbody>
@@ -104,6 +114,45 @@ include 'koneksi.php';
                 searching: true, // Enable search feature
                 //   responsif:true,
             });
+        });
+    </script>
+
+
+<!-- alert -->
+ 
+<?php if (@$_SESSION['sukses']) { ?>
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Sukses',
+                text: 'data berhasil dihapus',
+                timer: 3000,
+                showConfirmButton: true
+            })
+        </script>
+    <?php unset($_SESSION['sukses']);
+    } ?>
+
+<script>
+        $('.alert_notif').on('click', function() {
+            var getLink = $(this).attr('href');
+            Swal.fire({
+                title: "Yakin hapus data?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                confirmButtonText: 'Ya',
+                cancelButtonColor: '#3085d6',
+                cancelButtonText: "Batal"
+
+            }).then(result => {
+                //jika klik ya maka arahkan ke proses.php
+                if (result.isConfirmed) {
+                    window.location.href = getLink;
+
+                }
+            })
+            return false;
         });
     </script>
 </body>

@@ -29,7 +29,7 @@ include 'koneksi.php';
             </div>
             <div class="row mt-3">
                 <div class="col-md">
-                    <a href="tambahBarang.php" class="btn btn-primary">Tambah unser</a>
+                    <!-- <a href="tambahBarang.php" class="btn btn-primary">Tambah unser</a> -->
                     <a href="admin.php" class="btn btn-primary">Kembali</a>
                 </div>
             </div>

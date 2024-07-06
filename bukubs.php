@@ -8,7 +8,8 @@ include 'koneksi.php';
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Bootstrap demo</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.dataTables.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
@@ -32,7 +33,7 @@ $level = $_SESSION['level'];
             <div class="row mt-3">
                 <div class="col-md">
                     pencarian
-                    <form action="bukubs.php" method="get">
+                    <form action="bukubs.php" method="get" class="mb-3">
                         <label>Cari :</label>
                         <input type="text" name="cari">
                         <input type="submit" value="Cari">
@@ -104,8 +105,24 @@ $level = $_SESSION['level'];
         </div>
     </div>
 
+   
+
+
+    <!-- CETAK -->
+    <script>
+        function print(){
+            window.print();
+        }
+    </script>
+
+
+<!-- Bootstrap JS, Popper.js, and jQuery -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+ 
     <!-- alert -->
-    <?php if (@$_SESSION['berhasil']) { ?>
+ <?php if (@$_SESSION['berhasil']) { ?>
         <script>
             Swal.fire({
                 icon: 'success',
@@ -127,26 +144,19 @@ $level = $_SESSION['level'];
     } ?>
 
 
-<?php if (@$_SESSION['hapus']) { ?>
+<?php if (@$_SESSION['sukses']) { ?>
         <script>
-            swal.fire({
+            Swal.fire({
                 icon: 'success',
-                title: 'Berhasil',
+                title: 'Sukses',
                 text: 'data berhasil dihapus',
                 timer: 3000,
                 showConfirmButton: true
-            });
+            })
         </script>
-    <?php unset($_SESSION['hapus']);
+    <?php unset($_SESSION['sukses']);
     } ?>
 
-
-    <!-- CETAK -->
-    <script>
-        function print(){
-            window.print();
-        }
-    </script>
 
 <script>
         $('.alert_notif').on('click', function() {
@@ -170,11 +180,6 @@ $level = $_SESSION['level'];
             return false;
         });
     </script>
-
-   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-
 </body>
 
 </html>

@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $password = $_POST['password'];
     $confirm_password = $_POST['sandiulang'];
     $jenis_kelamin = $_POST['jk'];
-    $role = $_POST['level'];
+    // $role = $_POST['level'];
 
 
     // periksa kesamaan password dan confirm password
@@ -18,13 +18,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
         // siapkan dan jalanakan querry untuk menyimpan data
-        $stmt = $koneksi->prepare("INSERT INTO user (nama,jenis_kelamin,email,username,sandi,level) VALUE (?,?,?,?,?,?)");
+        $stmt = $koneksi->prepare("INSERT INTO user (nama,jenis_kelamin,email,username,sandi) VALUE (?,?,?,?,?)");
         if ($stmt == false) {
             die("Error preparing statment: ". $koneksi->error);
         }
 
         // bind parameters
-        $stmt->bind_param("ssssss", $nama, $jenis_kelamin, $email, $username, $hashed_password,$role);
+        $stmt->bind_param("sssss", $nama, $jenis_kelamin, $email, $username, $hashed_password);
 
         // excute statment
         if ($stmt->execute()) {

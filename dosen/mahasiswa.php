@@ -50,6 +50,9 @@ include '../koneksi.php';
                         <td><?php echo $d['nama']; ?></td>
                         <td><?php echo $d['prodi']; ?></td>
                         <td><?php echo $d['alamat']; ?></td>
+                        <?php if ($level == 'admin' || $level == 'karyawan') { ?>
+                            # code...
+                        
                         <td>
                         <?php if ($level == 'admin' || $level == 'karyawan') { ?>
                             <a href="editmhs.php?id=<?php echo $d['nim']; ?>" class="btn btn-success btn-sm">EDIT</a>
@@ -59,6 +62,7 @@ include '../koneksi.php';
                             <a href="hapusmhs.php?id=<?php echo $d['nim']; ?>" class="btn btn-danger btn-sm alert_notif">HAPUS</a>
                         <?php }?>
                         </td>
+                        <?php }?>
                     </tr>
                 <?php } ?>
             </tbody>

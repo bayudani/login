@@ -50,13 +50,13 @@
                         <input type="radio" name="jk" value="Perempuan" required> Perempuan
 
                     </div>
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <label>Role</label><br>
                         <input type="radio" name="level" value="member" required> member
                         <input type="radio" name="level" value="admin" required> admin
                         <input type="radio" name="level" value="karyawan" required> karyawan
 
-                    </div>
+                    </div> -->
                     <!-- <select class="form-select" aria-label="Default select example">
                         <option selected>Open this select menu</option>
                         <option value="1" >One</option>

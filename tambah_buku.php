@@ -54,7 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <label for="Keterangan" class="form-label">ket</label>
                 <input type="text" class="form-control" id="Keterangan" name="Keterangan">
             </div>
-            <button type="submit" class="btn btn-primary mt-2">Submit</button>
+            <button type="submit" class="btn btn-primary mt-2 mb-2">Submit</button>
         </form>
     </div>
 
